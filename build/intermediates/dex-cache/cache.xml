@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/webonise/AndroidStudioProjects/VolleyDemo/app/libs/volley.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d4aaa36e04ee71a83444f8367c97a46fda662d2c">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/volley-aac73148d18e6df2e2970491d34e1a827293d5e4.jar" />
+    </item>
+    <item
+        jar="/home/webonise/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.3/5fc52c41ef0239d1093a1eb7c3697036183677ce/gson-2.3.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="5fc52c41ef0239d1093a1eb7c3697036183677ce">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/gson-2.3-894932b9639c399f27760768a69e3848d945257a.jar" />
+    </item>
+    <item
+        jar="/home/webonise/adt-bundle-linux-x86_64-20140702/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-c20c43568d648b1c596918206ec338a296b2a9e5.jar" />
+    </item>
+    <item
+        jar="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/classes-47b05b0577af7fd4981963fbd2555ed2a117b76f.jar" />
+    </item>
+    <item
+        jar="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/classes-f58d71c0cad96ca1d91a591e551d7b3b6a464da4.jar" />
+    </item>
+    <item
+        jar="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d">
+        <dex dex="/home/webonise/AndroidStudioProjects/VolleyDemo/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-b27b5f387c36a28d82d03eea8bcf72b48cd8d21c.jar" />
+    </item>
+
+</items>
