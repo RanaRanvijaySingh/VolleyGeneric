@@ -1,6 +1,6 @@
-package com.volleydemo;
+package com.volleydemo.models;
 
-public class UserModel {
+public class ExampleObjectModel {
     private String name;
     private String email;
     private Contact phone;

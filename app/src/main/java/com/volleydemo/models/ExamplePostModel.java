@@ -1,6 +1,6 @@
-package com.volleydemo;
+package com.volleydemo.models;
 
-public class UserModelPost {
+public class ExamplePostModel {
     private Response response;
 
     public class Response {

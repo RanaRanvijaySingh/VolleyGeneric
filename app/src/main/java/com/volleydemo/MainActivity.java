@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request.Method;
+import com.volleydemo.models.ExampleArrayModel;
+import com.volleydemo.models.ExampleObjectModel;
+import com.volleydemo.models.ExamplePostModel;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,12 +30,12 @@ public class MainActivity extends ActionBarActivity {
         String tag = "json_obj_req";
         String url = "http://api.androidhive.info/volley/person_object.json";
         ServerSupport serverSupport = ServerSupport.getInstance(this);
-        VolleyRequest volleyRequest = new VolleyRequest(Method.GET,url,tag, UserModel.class);
+        VolleyRequest volleyRequest = new VolleyRequest(Method.GET,url,tag, ExampleObjectModel.class);
 		volleyRequest.setUpProgressDialog(0, "Loading ... ", false);
         serverSupport.makeApiCall(volleyRequest, new ApiCallListener() {
             @Override
             public void onSuccess(String response, Object responseObject) {
-                UserModel userModel = (UserModel)responseObject;
+                ExampleObjectModel userModel = (ExampleObjectModel)responseObject;
                 mTextView.setText(userModel.getName());
             }
 
@@ -47,12 +50,12 @@ public class MainActivity extends ActionBarActivity {
 		String url = "http://www.earrn.com/api/users/featured";
 		String tag = "json_array_req";
 		ServerSupport serverSupport = ServerSupport.getInstance(this);
-		VolleyRequest volleyRequest = new VolleyRequest(Method.GET,url,tag, new ArrayList<UserListModel>().getClass());
+		VolleyRequest volleyRequest = new VolleyRequest(Method.GET,url,tag, new ArrayList<ExampleArrayModel>().getClass());
 		volleyRequest.setUpProgressDialog(0,"Loading ... ",false);
 		serverSupport.makeApiCall(volleyRequest, new ApiCallListener() {
 			@Override
 			public void onSuccess(String response, Object responseObject) {
-				ArrayList<UserListModel> listModels = (ArrayList<UserListModel>) responseObject;
+				ArrayList<ExampleArrayModel> listModels = (ArrayList<ExampleArrayModel>) responseObject;
 				mTextView.setText(""+listModels.size());
 			}
 
@@ -87,13 +90,13 @@ public class MainActivity extends ActionBarActivity {
 		String  tag = "post_req";
 		String url = "http://testing.microsave.net/apis/library_search.json";
 		ServerSupport serverSupport = ServerSupport.getInstance(this);
-		VolleyRequest volleyRequest = new VolleyRequest(Method.POST,url,tag, UserModelPost.class);
+		VolleyRequest volleyRequest = new VolleyRequest(Method.POST,url,tag, ExamplePostModel.class);
 		volleyRequest.setParams(getParams());
 		volleyRequest.setUpProgressDialog(0,"Loading ... ",false);
 		serverSupport.makeApiCall(volleyRequest, new ApiCallListener() {
 			@Override
 			public void onSuccess(String response, Object responseObject) {
-				UserModelPost userModel = (UserModelPost) responseObject;
+				ExamplePostModel userModel = (ExamplePostModel) responseObject;
 				mTextView.setText(userModel.getResponse().getMessage());
 			}
 
