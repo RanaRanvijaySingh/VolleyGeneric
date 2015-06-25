@@ -2,6 +2,8 @@ package com.volleydemo;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -38,59 +40,65 @@ public class ServerSupport {
     }
 
     public void makeApiCall(final VolleyRequest volleyRequest,final ApiCallListener listener) {
+        ConnectivityManager cm = (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
         final ProgressDialog progressDialog = getProgressDialogFrom(volleyRequest);
         int requestType = volleyRequest.getRequestType();
         String url = volleyRequest.getUrl();
         Log.d(TAG, url);
-        if (progressDialog != null){
-            progressDialog.show();
-        }
-        StringRequest jsonObjReq = new StringRequest(requestType,url, new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d(TAG, response);
-                        onResponseReceived(response,listener,progressDialog,volleyRequest.getResponseClass());
+        if (isConnected) {
+            if (progressDialog != null) {
+                progressDialog.show();
+            }
+            StringRequest jsonObjReq = new StringRequest(requestType, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.d(TAG, response);
+                    onResponseReceived(response, listener, progressDialog, volleyRequest.getResponseClass());
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.d(TAG, error.toString());
+                    onErrorReceived(error, progressDialog);
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = volleyRequest.getParams();
+                    if (params != null && params.size() > 0) {
+                        return params;
                     }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d(TAG, error.toString());
-                onErrorReceived(error,progressDialog);
-            }
-        })
-            {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = volleyRequest.getParams();
-                if (params != null && params.size() > 0){
-                    return params;
+                    Log.d(TAG, String.valueOf(params));
+                    return super.getParams();
                 }
-                Log.d(TAG, String.valueOf(params));
-                return super.getParams();
-            }
 
-         /*   @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> header = volleyRequest.getHeader();
-                if (header != null && header.size() > 0){
-                    return header;
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> header = volleyRequest.getHeader();
+                    if (header != null && header.size() > 0) {
+                        return header;
+                    }
+                    Log.d(TAG, String.valueOf(header));
+                    return super.getHeaders();
                 }
-                Log.d(TAG, String.valueOf(header));
-                return super.getHeaders();
-            }*/
 
-            @Override
-            public byte[] getBody() throws AuthFailureError {
-                byte[] body = volleyRequest.getBody();
-                if (body != null && body.length > 0){
-                    return body;
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    byte[] body = volleyRequest.getBody();
+                    if (body != null && body.length > 0) {
+                        return body;
+                    }
+                    Log.d(TAG, String.valueOf(body));
+                    return super.getBody();
                 }
-                Log.d(TAG, String.valueOf(body));
-                return super.getBody();
-            }
-        };
-        addToRequestQueue(jsonObjReq, volleyRequest.getTag());
+            };
+            addToRequestQueue(jsonObjReq, volleyRequest.getTag());
+        }else {
+            Toast.makeText(mContext,"No connection!g Please check your network.",Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**

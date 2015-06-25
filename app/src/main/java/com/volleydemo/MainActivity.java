@@ -13,7 +13,6 @@ import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
 
-    private int hello;
 	private final String TAG = "MainActivity";
 	private TextView mTextView;
 	
